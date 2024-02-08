@@ -25,6 +25,9 @@
         border: none;
         cursor: pointer;
     }
+    .selected {
+	background-color: #444; /* Un fond plus foncé */
+    }
     .info-section {
         display: none;
         margin-top: 20px;
@@ -60,10 +63,10 @@
 <body>
     <div class="container">
         <h1>Cession de terrains moyennant remise de locaux à construire</h1>
-        <button class="button" onclick="showInfo('Vente totale du terrain contre remise des locaux à construire')">Vente totale du terrain contre remise des locaux à construire</button>
-        <button class="button" onclick="showInfo('Vente d\'une fraction indivise du terrain contre obligation de remettre des locaux à construire')">Vente d'une fraction indivise du terrain contre obligation de remettre des locaux à construire</button>
-        <button class="button" onclick="showInfo('Vente d\'une fraction indivise contre obligation de construire des locaux')">Vente d'une fraction indivise contre obligation de construire des locaux</button>
-        <button class="button" onclick="showInfo('Vente de terrain en tout ou partie contre la réalisation d\'une opération de construction')">Vente de terrain en tout ou partie contre la réalisation d'une opération de construction</button>
+        <button class="button info-button" onclick="showInfo('Vente totale du terrain contre remise des locaux à construire')">Vente totale du terrain contre remise des locaux à construire</button>
+        <button class="button info-button" onclick="showInfo('Vente d\'une fraction indivise du terrain contre obligation de remettre des locaux à construire')">Vente d'une fraction indivise du terrain contre obligation de remettre des locaux à construire</button>
+        <button class="button info-button" onclick="showInfo('Vente d\'une fraction indivise contre obligation de construire des locaux')">Vente d'une fraction indivise contre obligation de construire des locaux</button>
+        <button class="button info-button" onclick="showInfo('Vente de terrain en tout ou partie contre la réalisation d\'une opération de construction')">Vente de terrain en tout ou partie contre la réalisation d'une opération de construction</button>
 
         <div id="infoSection" class="info-section">
             <h2 id="infoTitle"></h2>
@@ -230,14 +233,24 @@ const infoData = {
     }
 };
 
-        function showInfo(optionText) {
-            currentOption = optionText; // Mise à jour de l'option courante
-            document.getElementById('infoTitle').innerText = optionText;
-            document.getElementById('infoSection').style.display = 'block';
-            updateContent(); // Mettre à jour le contenu basé sur l'option et le statut sélectionné
-            updateStatusDescription('acquisition');
-            updateStatusDescription('revente');
-        }
+        function showInfo(optionText, buttonElement) {
+    // Mettre à jour le titre avec l'option sélectionnée
+    document.getElementById('infoTitle').innerText = optionText;
+    document.getElementById('infoSection').style.display = 'block';
+    updateContent(); // Mettre à jour le contenu
+    updateStatusDescription('acquisition');
+    updateStatusDescription('revente');
+    currentOption = optionText; // Mise à jour de l'option courante
+
+    // Retirer la classe 'selected' de tous les boutons
+    document.querySelectorAll('.info-button').forEach(function(btn) {
+        btn.classList.remove('selected');
+    });
+
+    // Ajouter la classe 'selected' au bouton cliqué
+    buttonElement.classList.add('selected');
+}
+
 
 function updateContent() {
     const statusAcquisition = document.getElementById('toggleAcquisition').value;
