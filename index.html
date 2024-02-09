@@ -4,69 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informations sur la Vente de Terrain</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #333;
-        color: white;
-        padding: 20px;
-    }
-    .container {
-        max-width: 800px;
-        margin: auto;
-    }
-    .button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin: 5px 0; /* Reduced margin */
-        background-color: #555;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    .selected {
-	background-color: #444; /* Un fond plus foncé */
-    }
-    .info-section {
-        display: none;
-        margin-top: 20px;
-    }
-    .flex-container {
-        display: flex;
-        flex-direction: column;
-    }
-    @media (min-width: 600px) {
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0; /* Reduced margin */
+            background-color: #555;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .selected {
+            background-color: #444; /* Un fond plus foncé */
+        }
+        .info-section {
+            display: none;
+            margin-top: 20px;
+        }
         .flex-container {
-            flex-direction: row;
-            justify-content: space-between;
+            display: flex;
+            flex-direction: column;
+        }
+        @media (min-width: 600px) {
+            .flex-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .flex-item {
+                width: 48%;
+            }
         }
         .flex-item {
-            width: 48%;
+            margin-bottom: 20px;
         }
-    }
-    .flex-item {
-        margin-bottom: 20px;
-    }
-    .title {
-        margin-bottom: 10px;
-    }
-    .status-description {
-        font-style: italic;
-        color: #ccc;
-        margin-top: 5px;
-        font-size: 10px; /* Updated font size */
-    }
-</style>
-
+        .title {
+            margin-bottom: 10px;
+        }
+        .status-description {
+            font-style: italic;
+            color: #ccc;
+            margin-top: 5px;
+            font-size: 10px; /* Updated font size */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Cession de terrains moyennant remise de locaux à construire</h1>
-        <button class="button info-button" onclick="showInfo('Vente totale du terrain contre remise des locaux à construire', this)">Vente totale du terrain contre remise des locaux à construire</button>
-	<button class="button info-button" onclick="showInfo('Vente d\'une fraction indivise du terrain contre obligation de remettre des locaux à construire', this)">Vente d'une fraction indivise du terrain contre obligation de remettre des locaux à construire</button>
-	<button class="button info-button" onclick="showInfo('Vente d\'une fraction indivise contre obligation de construire des locaux', this)">Vente d'une fraction indivise contre obligation de construire des locaux</button>
-	<button class="button info-button" onclick="showInfo('Vente de terrain en tout ou partie contre la réalisation d\'une opération de construction', this)">Vente de terrain en tout ou partie contre la réalisation d'une opération de construction</button>
+        <button class="button info-button" onclick="showInfo('Vente totale du terrain contre remise des locaux à construire', this)">Vente totale</button>
+        <button class="button info-button" onclick="showInfo('Vente d\'une fraction indivise contre remise des locaux à construire ou obligation de construire des locaux', this)">Vente d'une fraction indivise</button>
+        <button class="button info-button" onclick="showInfo('Vente de terrain en tout ou partie contre la réalisation d\'une opération de construction', this)">Vente et opération de construction</button>
 
         <div id="infoSection" class="info-section">
             <h2 id="infoTitle"></h2>
@@ -74,9 +72,9 @@
                 <div class="flex-item">
                     <h3 class="title">Régime à l'acquisition</h3>
                     <select id="toggleAcquisition" onchange="updateStatusDescription('acquisition'); updateContent();">
-    			<option value="AA">AA</option>
-    			<option value="NA/AN">NA/AN</option>
-		    </select>
+                        <option value="AA">A-A</option>
+                        <option value="NA/AN">N-A ou A-N</option>
+                    </select>
                     <div id="statusDescriptionAcquisition" class="status-description"></div>
                     <h3 class="title">Régime</h3>
                     <p id="regimeAcquisition">Informations...</p>
@@ -90,9 +88,9 @@
                 <div class="flex-item">
                     <h3 class="title">Régime à la revente</h3>
                     <select id="toggleRevente" onchange="updateStatusDescription('revente'); updateContent();">
-    			<option value="AA">AA</option>
-    			<option value="NA/AN">NA/AN</option>
-		    </select>
+                        <option value="AA">A-A</option>
+                        <option value="NA/AN">N-A ou A-N</option>
+                    </select>
                     <div id="statusDescriptionRevente" class="status-description"></div>
                     <h3 class="title">Régime</h3>
                     <p id="regimeRevente">Informations...</p>
@@ -110,7 +108,7 @@
     <script>
         let currentOption = ""; // Variable globale pour stocker l'option courante
 
-const infoData = {
+        const infoData = {
     "Vente totale du terrain contre remise des locaux à construire": {
         "Acquisition": {
             "AA": {
@@ -141,37 +139,7 @@ const infoData = {
             }
         }
     },
-    "Vente d'une fraction indivise du terrain contre obligation de remettre des locaux à construire": {
-        "Acquisition": {
-            "AA": {
-                "Régime": "TVA sur le prix total si l’acquisition par le cédant a ouvert droit à déduction ou TVA sur la marge si l’acquisition initiale n’a pas ouvert droit à déduction",
-                "Assiette": "La valeur des constructions à remettre en paiement déduction faite des tantièmes de terrain correspondant aux locaux remis en paiement qui, par hypothèse, ne sont pas compris dans la vente.",
-                "Fait générateur": "Acte de cession des tantièmes indivis du terrain",
-                "Récupération": ""
-            },
-            "NA/AN": {
-                "Régime": "Hors champ",
-                "Assiette": "",
-                "Fait générateur": "",
-                "Récupération": ""
-            }
-        },
-        "Revente": {
-            "AA": {
-                "Régime": "Le vendeur devient propriétaire des locaux construits par voie d'accession, au fur et à mesure de leur édification, de sorte que la remise des lots ne donne lieu à aucune mutation d'immeubles à titre onéreux et ne peut donc pas être passible de la TVA. Lorsque le bien est destiné à être utilisé pour la réalisation d'opérations n'ouvrant pas droit à une déduction complète de la TVA supportée en amont, une LASM doit être constaté.",
-                "Assiette": "LASM, le cas échéant",
-                "Fait générateur": "LASM, le cas échéant",
-                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
-            },
-            "NA/AN": {
-                "Régime": "Le vendeur devient propriétaire des locaux construits par voie d'accession, au fur et à mesure de leur édification, de sorte que la remise des lots ne donne lieu à aucune mutation d'immeubles à titre onéreux et ne peut donc pas être passible de la TVA.",
-                "Assiette": "",
-                "Fait générateur": "",
-                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
-            }
-        }
-    },
-    "Vente d'une fraction indivise contre obligation de construire des locaux": {
+    "Vente d'une fraction indivise contre remise des locaux à construire ou obligation de construire des locaux": {
         "Acquisition": {
             "AA": {
                 "Régime": "TVA sur le prix total si l’acquisition par le cédant a ouvert droit à déduction ou TVA sur la marge si l’acquisition initiale n’a pas ouvert droit à déduction",
@@ -233,24 +201,24 @@ const infoData = {
     }
 };
 
-function showInfo(optionText, buttonElement) {
-    currentOption = optionText; // Mise à jour de l'option courante
-    document.getElementById('infoTitle').innerText = optionText;
-    document.getElementById('infoSection').style.display = 'block';
-    updateContent(); // Mettre à jour le contenu
-    updateStatusDescription('acquisition');
-    updateStatusDescription('revente');
+        function showInfo(optionText, buttonElement) {
+            currentOption = optionText; // Mise à jour de l'option courante
+            document.getElementById('infoTitle').innerText = optionText; // Affiche le texte complet de l'option choisie
+            document.getElementById('infoSection').style.display = 'block';
+            updateContent(); // Mettre à jour le contenu
+            updateStatusDescription('acquisition');
+            updateStatusDescription('revente');
 
-    // Retirer la classe 'selected' de tous les boutons
-    document.querySelectorAll('.info-button').forEach(function(btn) {
-        btn.classList.remove('selected');
-    });
+            // Retirer la classe 'selected' de tous les boutons
+            document.querySelectorAll('.info-button').forEach(function(btn) {
+                btn.classList.remove('selected');
+            });
 
-    // Ajouter la classe 'selected' au bouton cliqué
-    buttonElement.classList.add('selected');
-}
+            // Ajouter la classe 'selected' au bouton cliqué
+            buttonElement.classList.add('selected');
+        }
 
-function updateContent() {
+        function updateContent() {
     const statusAcquisition = document.getElementById('toggleAcquisition').value;
     const statusRevente = document.getElementById('toggleRevente').value;
 
@@ -277,7 +245,6 @@ function updateContent() {
         console.error("Option de vente non reconnue.");
     }
 }
-
 
         function updateStatusDescription(section) {
             const status = document.getElementById(`toggle${section.charAt(0).toUpperCase() + section.slice(1)}`).value;
