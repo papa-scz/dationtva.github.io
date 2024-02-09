@@ -129,15 +129,15 @@ const infoData = {
         "Revente": {
             "AA": {
                 "Régime": "TVA plein droit",
-                "Assiette": "Valeur vénale au jour de la livraison du terrain + soulte (si immeuble remis excède la valeur du terrain)",
+                "Assiette": "Valeur vénale, appréciée au jour de la livraison du terrain, des locaux faisant l'objet de la dation en paiement + soulte (si immeuble remis excède la valeur du terrain)",
                 "Fait générateur": "La vente du terrain (date de l'acte de dation) sauf si l’acte portant dation en paiement stipule une clause prévoyant que le prix de vente ne sera réputé payé qu’après achèvement des constructions",
-                "Récupération": "oui"
+                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
             },
             "NA/AN": {
                 "Régime": "TVA plein droit",
-                "Assiette": "Valeur vénale au jour de la livraison du terrain + soulte (si immeuble remis excède la valeur du terrain)",
+                "Assiette": "Valeur vénale, appréciée au jour de la livraison du terrain, des locaux faisant l'objet de la dation en paiement + soulte (si immeuble remis excède la valeur du terrain)",
                 "Fait générateur": "La vente du terrain (date de l'acte de dation) sauf si l’acte portant dation en paiement stipule une clause prévoyant que le prix de vente ne sera réputé payé qu’après achèvement des constructions",
-                "Récupération": "oui"
+                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
             }
         }
     },
@@ -158,16 +158,16 @@ const infoData = {
         },
         "Revente": {
             "AA": {
-                "Régime": "Le vendeur devient propriétaire des locaux par voie d'accession donc LASM si le bien est destiné à être utilisé pour le réalisation d’opérations n’ouvrant pas droit à déduction complète de la TVA supporté en amont",
-                "Assiette": "LASM",
-                "Fait générateur": "x",
-                "Récupération": "oui"
+                "Régime": "Le vendeur devient propriétaire des locaux construits par voie d'accession, au fur et à mesure de leur édification, de sorte que la remise des lots ne donne lieu à aucune mutation d'immeubles à titre onéreux et ne peut donc pas être passible de la TVA. Lorsque le bien est destiné à être utilisé pour la réalisation d'opérations n'ouvrant pas droit à une déduction complète de la TVA supportée en amont, une LASM doit être constaté.",
+                "Assiette": "LASM, le cas échéant",
+                "Fait générateur": "LASM, le cas échéant",
+                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
             },
             "NA/AN": {
-                "Régime": "Le vendeur devient propriétaire des locaux par voie d'accession donc pas de TVA",
+                "Régime": "Le vendeur devient propriétaire des locaux construits par voie d'accession, au fur et à mesure de leur édification, de sorte que la remise des lots ne donne lieu à aucune mutation d'immeubles à titre onéreux et ne peut donc pas être passible de la TVA.",
                 "Assiette": "",
                 "Fait générateur": "",
-                "Récupération": ""
+                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
             }
         }
     },
@@ -188,16 +188,16 @@ const infoData = {
         },
         "Revente": {
             "AA": {
-                "Régime": "Le vendeur devient propriétaire des locaux par voie d'accession donc LASM si le bien est destiné à être utilisé pour le réalisation d’opérations n’ouvrant pas droit à déduction complète de la TVA supporté en amont",
-                "Assiette": "LASM",
-                "Fait générateur": "",
-                "Récupération": "oui"
+                "Régime": "Le vendeur devient propriétaire des locaux construits par voie d'accession, au fur et à mesure de leur édification, de sorte que la remise des lots ne donne lieu à aucune mutation d'immeubles à titre onéreux et ne peut donc pas être passible de la TVA. Lorsque le bien est destiné à être utilisé pour la réalisation d'opérations n'ouvrant pas droit à une déduction complète de la TVA supportée en amont, une LASM doit être constaté.",
+                "Assiette": "LASM, le cas échéant",
+                "Fait générateur": "LASM, le cas échéant",
+                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
             },
             "NA/AN": {
-                "Régime": "Le vendeur devient propriétaire des locaux par voie d'accession donc pas de TVA",
+                "Régime": "Le vendeur devient propriétaire des locaux construits par voie d'accession, au fur et à mesure de leur édification, de sorte que la remise des lots ne donne lieu à aucune mutation d'immeubles à titre onéreux et ne peut donc pas être passible de la TVA.",
                 "Assiette": "",
                 "Fait générateur": "",
-                "Récupération": ""
+                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
             }
         }
     },
@@ -218,16 +218,16 @@ const infoData = {
         },
         "Revente": {
             "AA": {
-                "Régime": "LASM",
+                "Régime": "Le vendeur assume la maîtrise de la construction des locaux qui lui sont attribués, aucune mutation de ceux-ci n’est constatée, cette opération n’est pas passible de la TVA. Une LASM doit être constatée.",
                 "Assiette": "LASM",
-                "Fait générateur": "",
-                "Récupération": ""
+                "Fait générateur": "LASM",
+                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
             },
             "NA/AN": {
-                "Régime": "pas de TVA",
+                "Régime": "Le vendeur assume la maîtrise de la construction des locaux qui lui sont attribués, aucune mutation de ceux-ci n’est constatée, cette opération n’est pas passible de la TVA",
                 "Assiette": "",
                 "Fait générateur": "",
-                "Récupération": ""
+                "Récupération": "Le constructeur s’acquitte de la TVA sur les travaux immobiliers qu’il supporte, et cette TVA est pour lui une TVA récupérable"
             }
         }
     }
